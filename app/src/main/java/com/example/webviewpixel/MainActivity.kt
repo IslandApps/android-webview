@@ -24,8 +24,7 @@ class MainActivity : AppCompatActivity() {
     // TODO: Change this to your target website URL
     private const val HARDCODED_URL = "https://example.com"
 
-    private const val WEBSITE_DIR = "website"
-    private const val INDEX_FILE = "index.html"
+    private const val ASSETS_PATH = "website/index.html"
 
     private lateinit var binding: ActivityMainBinding
     private var currentUrl: String = HARDCODED_URL
