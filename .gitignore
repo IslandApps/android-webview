@@ -94,3 +94,6 @@ Thumbs.db
 
 # Android Profiling
 *.hprof
+
+# Claude Code
+.claude/
