@@ -96,4 +96,4 @@ Thumbs.db
 *.hprof
 
 # Claude Code
-.claude/
+.claude
