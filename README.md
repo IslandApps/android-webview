@@ -1,5 +1,4 @@
-# WebViewPixel - Android WebView Wrapper App
-
+# Android WebView Wrapper Template
 A simple Android app that wraps a web application in a native WebView, providing a seamless native app experience.
 
 ## Features
