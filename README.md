@@ -37,7 +37,6 @@ You can bundle local HTML/CSS/JS files inside the app instead of loading from a 
 **How It Works:**
 - If `index.html` exists in the assets folder, the app loads it
 - If no local files are found, the app loads the hardcoded URL instead
-- Files are compiled into the APK - no need to manually copy them to the device
 
 **Tips:**
 - Your entry file must be named `index.html`
