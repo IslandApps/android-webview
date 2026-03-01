@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App name -->
+    <string name="app_name">WebView App</string>
+
+    <!-- Error strings -->
+    <string name="error_title">Oops! Something went wrong</string>
+    <string name="error_message_default">Unable to load the page. Please check your internet connection and try again.</string>
+    <string name="error_no_internet">No internet connection. Please check your network settings.</string>
+    <string name="error_timeout">Connection timed out. Please try again.</string>
+    <string name="error_ssl">SSL certificate error. The website\'s security certificate cannot be verified.</string>
+    <string name="error_host_not_found">Server not found. Please check the URL and try again.</string>
+    <string name="error_icon_description">Error icon</string>
+
+    <!-- Action strings -->
+    <string name="retry">Retry</string>
+    <string name="reload">Reload</string>
+</resources>
