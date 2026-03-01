@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Splash screen theme for Android 12+ -->
+    <style name="Theme.WebviewPixel" parent="android:Theme.Material.Light.NoActionBar">
+        <!-- Splash screen icon (288dp) -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_icon</item>
+        <!-- Splash screen background color -->
+        <item name="android:windowSplashScreenBackground">@color/splash_background</item>
+        <!-- Splash screen animation duration -->
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
+        <!-- Splash screen icon background color (optional) -->
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/splash_icon_background</item>
+    </style>
+</resources>

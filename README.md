@@ -74,10 +74,14 @@ app/
 │   │   │   └── styles.xml          # Custom styles
 │   │   ├── xml/
 │   │   │   └── network_security_config.xml  # Network security configuration
-│   │   └── drawable/
-│   │       └── ic_launcher_foreground.xml
+│   │   ├── drawable/               # Image resources
+│   │   └── mipmap-*/               # Launcher icons (auto-generated)
 │   └── AndroidManifest.xml          # App manifest with permissions
 └── build.gradle.kts                  # App-level build configuration
+assets/
+├── logo.png                         # Your app logo (add this!)
+├── generate_icons.py                # Icon generation script
+└── README.md                        # Detailed customization guide
 ```
 
 ## Permissions
@@ -88,6 +92,29 @@ The app requires the following permissions:
 
 ## Customization
 
+### Change App Icon & Splash Screen (Super Easy!)
+
+**The easiest way to customize your app's appearance:**
+
+1. **Add your logo**: Place a square PNG logo (1024x1024px recommended) as `assets/logo.png`
+2. **Run the generator** (pick one):
+   - **Windows**: Double-click `generate-icons.bat` or run it from command line
+   - **Mac/Linux**: `./generate-icons.sh`
+   - **Manual**: `python assets/generate_icons.py`
+3. **Build and run**: Your icons and splash screen are ready!
+
+That's it! The script automatically generates:
+- ✅ Launcher icons for all screen densities
+- ✅ Adaptive icons for Android 8.0+
+- ✅ Splash screen for Android 12+
+- ✅ Monochrome icons for Android 13+
+
+**Requirements:**
+- Python installed
+- Install Pillow: `pip install Pillow`
+
+**For manual customization**, see [assets/README.md](assets/README.md)
+
 ### Change App Name
 
 Edit `app/src/main/res/values/strings.xml`:
@@ -96,13 +123,13 @@ Edit `app/src/main/res/values/strings.xml`:
 <string name="app_name">Your App Name</string>
 ```
 
-### Change App Icon
-
-Replace the launcher icons in `app/src/main/res/mipmap-*/` directories with your own icons.
-
 ### Change App Colors
 
 Edit `app/src/main/res/values/colors.xml` to customize the color scheme.
+
+To change the splash screen colors, modify:
+- `splash_background` - Background color of the splash screen
+- `splash_icon_background` - Background color behind the splash icon
 
 ## Troubleshooting
 
