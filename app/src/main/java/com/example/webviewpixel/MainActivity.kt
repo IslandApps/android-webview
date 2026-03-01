@@ -11,6 +11,7 @@ import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.webviewpixel.databinding.ActivityMainBinding
+import java.io.File
 
 /**
  * Main Activity for WebView Wrapper App
@@ -22,6 +23,9 @@ class MainActivity : AppCompatActivity() {
 
     // TODO: Change this to your target website URL
     private const val HARDCODED_URL = "https://example.com"
+
+    private const val WEBSITE_DIR = "website"
+    private const val INDEX_FILE = "index.html"
 
     private lateinit var binding: ActivityMainBinding
     private var currentUrl: String = HARDCODED_URL
@@ -36,8 +40,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Create website directory if it doesn't exist
+        ensureWebsiteDirectoryExists()
+
         setupWebView()
-        loadUrl(currentUrl)
+        // Check for local website files first, fall back to hardcoded URL
+        val urlToLoad = getLocalWebsiteUrl() ?: HARDCODED_URL
+        currentUrl = urlToLoad
+        loadUrl(urlToLoad)
 
         // Set up retry button
         binding.retryButton.setOnClickListener {
@@ -94,6 +104,11 @@ class MainActivity : AppCompatActivity() {
 
                 // Text settings
                 textZoom = 100
+
+                // Allow file access from file:// URLs
+                allowFileAccess = true
+                allowFileAccessFromFileURLs = true
+                allowUniversalAccessFromFileURLs = true
             }
 
             // Set custom WebViewClient for handling page loading and errors
@@ -115,20 +130,24 @@ class MainActivity : AppCompatActivity() {
                     view: WebView?,
                     request: WebResourceRequest?
                 ): Boolean {
-                    // Keep navigation within the WebView
+                    // Handle both file:// and http(s):// URLs
                     request?.url?.let { url ->
-                        view?.loadUrl(url.toString())
-                        currentUrl = url.toString()
+                        if (url.scheme == "file" || url.scheme == "http" || url.scheme == "https") {
+                            view?.loadUrl(url.toString())
+                            currentUrl = url.toString()
+                        }
                     }
                     return true
                 }
 
                 @Deprecated("Deprecated in API 24")
                 override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                    // Keep navigation within the WebView
+                    // Handle both file:// and http(s):// URLs
                     url?.let {
-                        view?.loadUrl(it)
-                        currentUrl = it
+                        if (it.startsWith("file://") || it.startsWith("http://") || it.startsWith("https://")) {
+                            view?.loadUrl(it)
+                            currentUrl = it
+                        }
                     }
                     return true
                 }
@@ -263,6 +282,31 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         binding.webView.destroy()
+    }
+
+    /**
+     * Check if local website files exist and return the URL
+     * @return Local file URL if index.html exists, null otherwise
+     */
+    private fun getLocalWebsiteUrl(): String? {
+        val websiteDir = File(getExternalFilesDir(null), WEBSITE_DIR)
+        val indexFile = File(websiteDir, INDEX_FILE)
+
+        return if (indexFile.exists()) {
+            "file://${indexFile.absolutePath}"
+        } else {
+            null
+        }
+    }
+
+    /**
+     * Ensure the website directory exists for users to add files
+     */
+    private fun ensureWebsiteDirectoryExists() {
+        val websiteDir = File(getExternalFilesDir(null), WEBSITE_DIR)
+        if (!websiteDir.exists()) {
+            websiteDir.mkdirs()
+        }
     }
 
     companion object {
