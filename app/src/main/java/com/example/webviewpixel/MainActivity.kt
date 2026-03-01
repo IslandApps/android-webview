@@ -11,7 +11,6 @@ import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.webviewpixel.databinding.ActivityMainBinding
-import java.io.File
 
 /**
  * Main Activity for WebView Wrapper App
@@ -38,9 +37,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Create website directory if it doesn't exist
-        ensureWebsiteDirectoryExists()
 
         setupWebView()
         // Check for local website files first, fall back to hardcoded URL
@@ -284,27 +280,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Check if local website files exist and return the URL
-     * @return Local file URL if index.html exists, null otherwise
+     * Check if local website files exist in assets and return the URL
+     * @return Local file URL if index.html exists in assets, null otherwise
      */
     private fun getLocalWebsiteUrl(): String? {
-        val websiteDir = File(getExternalFilesDir(null), WEBSITE_DIR)
-        val indexFile = File(websiteDir, INDEX_FILE)
-
-        return if (indexFile.exists()) {
-            "file://${indexFile.absolutePath}"
-        } else {
+        return try {
+            val assets = assets
+            val fileList = assets.list("website")
+            if (fileList != null && fileList.contains("index.html")) {
+                "file:///android_asset/website/index.html"
+            } else {
+                null
+            }
+        } catch (e: Exception) {
             null
-        }
-    }
-
-    /**
-     * Ensure the website directory exists for users to add files
-     */
-    private fun ensureWebsiteDirectoryExists() {
-        val websiteDir = File(getExternalFilesDir(null), WEBSITE_DIR)
-        if (!websiteDir.exists()) {
-            websiteDir.mkdirs()
         }
     }
 

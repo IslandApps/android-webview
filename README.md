@@ -27,30 +27,26 @@ Replace `https://example.com` with your target website URL.
 
 ### Using Local Website Files (Optional Feature)
 
-You can use local HTML/CSS/JS files instead of a remote URL:
+You can bundle local HTML/CSS/JS files inside the app instead of loading from a remote URL:
 
 **Setup Steps:**
-1. Connect your Android device to a computer (or use a file manager app on the device)
-2. Navigate to the app's website folder:
-   - Path: `Android/data/com.example.webviewpixel/files/website/`
-   - Or use Android's Files app > App Files > WebviewPixel
-3. Place your website files in this folder (must include `index.html`)
-4. Restart the app - it will automatically load your local files
+1. Create a folder `app/src/main/assets/website/` in your project
+2. Place your website files in this folder (must include `index.html`)
+3. Build and run the app - it will automatically load your local files
 
 **How It Works:**
-- If `index.html` exists in the website folder, the app loads it
+- If `index.html` exists in the assets folder, the app loads it
 - If no local files are found, the app loads the hardcoded URL instead
-- No configuration needed - just drop in your files and go!
+- Files are compiled into the APK - no need to manually copy them to the device
 
 **Tips:**
 - Your entry file must be named `index.html`
 - All relative paths (CSS, JS, images) work normally
 - Subdirectories are supported (e.g., `css/style.css`, `js/app.js`)
-- Files are removed when you uninstall the app
 
 **Example File Structure:**
 ```
-website/
+app/src/main/assets/website/
 ├── index.html
 ├── css/
 │   └── style.css
