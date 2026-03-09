@@ -1,6 +1,6 @@
 # Website to Android App Template
 
-**A simple tool that turns any website into an Android app!**
+**A simple starter template that turns any website into an Android app!**
 
 ## What Does This Do?
 
