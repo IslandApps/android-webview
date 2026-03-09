@@ -37,19 +37,17 @@ captures/
 
 # IntelliJ
 *.iml
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/gradle.xml
-.idea/assetWizardSettings.xml
-.idea/dictionaries
-.idea/libraries
-.idea/jarRepositories.xml
-.idea/caches
-.idea/modules.xml
-.idea/.name
-.idea/compiler.xml
-.idea/misc.xml
-.idea/vcs.xml
+.idea/
+
+# Android Studio generated files and folders
+.idea/
+*.ipr
+*.iws
+out/
+
+# Gradle
+.gradle/
+build/
 
 # Keystore files
 *.jks
@@ -97,3 +95,14 @@ Thumbs.db
 
 # Claude Code
 .claude/
+
+# Signing files
+.signing/
+
+# Android NDK
+obj/
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release

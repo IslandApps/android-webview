@@ -20,11 +20,6 @@ import com.example.webviewpixel.databinding.ActivityMainBinding
  */
 class MainActivity : AppCompatActivity() {
 
-    // TODO: Change this to your target website URL
-    private const val HARDCODED_URL = "https://example.com"
-
-    private const val ASSETS_PATH = "website/index.html"
-
     private lateinit var binding: ActivityMainBinding
     private var currentUrl: String = HARDCODED_URL
 
@@ -298,6 +293,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
+        // ⬇️ CHANGE THIS URL TO YOUR WEBSITE ⬇️
+        private const val HARDCODED_URL = "https://example.com"
+        private const val ASSETS_PATH = "website/index.html"
         private const val KEY_URL = "key_url"
     }
 }
