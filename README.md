@@ -64,15 +64,14 @@ Instead of loading a website from the internet, you can include HTML/CSS/JavaScr
 
 **Step-by-Step Instructions:**
 
-1. **Create the website folder**:
-   - In Android Studio, right-click on the `app` folder
-   - Select `New > Folder > Assets Folder`
-   - Click "Finish" (this creates an `assets` folder)
+1. **Find the website folder** (it already exists!):
+   - In the left panel, navigate to `app > src > main > assets > website`
+   - This folder is already created for you
 
-2. **Add your website**:
-   - Inside the `app/src/main/assets/` folder, create a new folder called `website`
-   - Put all your website files inside this folder
+2. **Add your website files**:
+   - Copy your HTML, CSS, and JavaScript files into the `website` folder
    - **Important**: Your main file must be named `index.html`
+   - You can drag and drop files directly into Android Studio
 
 3. **Your folder structure should look like**:
    ```
