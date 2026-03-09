@@ -1,4 +1,4 @@
-# Android WebView Wrapper Template
+# Website to Android App Template
 
 **A simple tool that turns any website into an Android app!**
 
@@ -109,6 +109,9 @@ Instead of loading a website from the internet, you can include HTML/CSS/JavaScr
 - **Minimum SDK: API 24**: Your app works on Android 7.0 and newer phones (covers 99%+ of devices)
 - **Target SDK: API 34**: Your app is designed for and tested on Android 14
 - **Kotlin**: The programming language used (don't worry, you don't need to learn it!)
+
+**Good news - you don't need to install Java!**
+Android Studio comes with its own built-in Java Development Kit (JDK), so you don't need to install Java separately. Just install Android Studio and you're ready to go!
 
 ## Building Your App
 
@@ -262,6 +265,109 @@ Customize the colors used throughout your app:
 4. Key colors you can change:
    - `splash_background` - Background color while app loads
    - `splash_icon_background` - Color behind your icon during loading
+
+### Change Package Name (Advanced)
+
+The package name (currently `com.example.webviewpixel`) is your app's unique identifier. It's important to change this before publishing to the Google Play Store.
+
+**⚠️ Important: Changing the package name affects many files. Use Android Studio's built-in refactoring tool!**
+
+**Step-by-Step Instructions:**
+
+1. **Open the refactor tool**
+   - In Android Studio, click on the package name in the Project panel: `app > java > com.example.webviewpixel`
+   - Or click directly on the folder name in the left panel
+
+2. **Start the refactor**
+   - Right-click on the package name (folder)
+   - Select `Refactor > Rename...`
+   - Or press `Shift + F6` on Windows/Linux, `Fn + Shift + F6` on Mac
+
+3. **Choose rename scope**
+   - Select `Rename package`
+   - Click `Rename` button
+
+4. **Enter your new package name**
+   - Use reverse domain notation: `com.yourcompany.yourappname`
+   - Example: `com.mycompany.mywebsite`
+   - **Format rules**:
+     - Must be all lowercase
+     - Use dots to separate parts
+     - No spaces or special characters
+     - Usually follows: `com.[company].[appname]`
+
+5. **Confirm the changes**
+   - Android Studio will show you a preview of all files that will be changed
+   - Review the changes to make sure everything looks correct
+   - Click `Do Refactor`
+
+6. **Wait for Gradle sync**
+   - Android Studio will automatically sync the project
+   - Wait for "Gradle sync finished" message at the bottom
+
+**What this changes:**
+- ✅ Package name in all your source files
+- ✅ `applicationId` in build.gradle.kts
+- ✅ `namespace` in build.gradle.kts
+- ✅ All imports and references throughout the project
+
+**Common package name examples:**
+- `com.google.maps` → Google's Maps app
+- `com.instagram.android` → Instagram
+- `com.mycompany.myapp` → Your company's app
+
+### Change App Version
+
+Update your app's version number when you release updates:
+
+1. **Find the version file**: `app > build.gradle.kts` (in the Project panel, it's under "Gradle Scripts")
+
+2. **Look for these lines** (around line 14-15):
+   ```kotlin
+   versionCode = 1
+   versionName = "1.0"
+   ```
+
+3. **Update the version numbers**:
+   - **versionCode**: A whole number that must increase with each release
+     - Start at 1, then 2, 3, 4, etc.
+     - Google Play uses this to detect updates
+     - Example: `versionCode = 2` (for your second release)
+
+   - **versionName**: A string that users see (can be anything you want)
+     - Typically uses semantic versioning: `major.minor.patch`
+     - Examples: `"1.0"`, `"1.1"`, `"2.0"`, `"1.0.1"`
+     - Example: `versionName = "1.1"` (for a minor update)
+
+4. **Version number examples**:
+   ```kotlin
+   // First release
+   versionCode = 1
+   versionName = "1.0"
+
+   // Bug fix release
+   versionCode = 2
+   versionName = "1.0.1"
+
+   // New feature release
+   versionCode = 3
+   versionName = "1.1"
+
+   // Major update
+   versionCode = 4
+   versionName = "2.0"
+   ```
+
+5. **Rebuild the app** after making changes
+
+**Version Number Tips:**
+- **versionCode** must always increase - never reuse old numbers
+- **versionName** is for humans - make it meaningful (e.g., "1.0 - First Release", "1.1 - New Features")
+- Common versioning strategy:
+  - `1.0.0` = First major release
+  - `1.0.1` = Bug fix
+  - `1.1.0` = New features
+  - `2.0.0` = Major update/redesign
 
 ## Troubleshooting (Help!)
 
